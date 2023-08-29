@@ -1,4 +1,7 @@
 package com.climasync.weather.service;
 
-public interface CachedWeatherService {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CachedWeatherService  {
 }
