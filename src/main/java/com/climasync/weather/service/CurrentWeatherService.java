@@ -1,4 +1,5 @@
 package com.climasync.weather.service;
 
-public interface WeatherDataService {
+
+public interface CurrentWeatherService {
 }

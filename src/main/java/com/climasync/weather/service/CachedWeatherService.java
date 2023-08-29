@@ -1,4 +1,4 @@
 package com.climasync.weather.service;
 
-public interface CityService {
+public interface CachedWeatherService {
 }
