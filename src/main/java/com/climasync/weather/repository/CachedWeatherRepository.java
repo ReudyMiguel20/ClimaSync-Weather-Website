@@ -6,8 +6,10 @@ import com.climasync.weather.model.entity.Location;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CachedWeatherRepository extends MongoRepository<CachedWeather, String>  {
 
-    CachedWeather findByLocation(Location location);
+    Optional<CachedWeather> findByLocation(Location location);
 }

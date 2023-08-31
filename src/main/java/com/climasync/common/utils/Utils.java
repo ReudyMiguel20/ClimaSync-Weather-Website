@@ -1,5 +1,7 @@
 package com.climasync.common.utils;
 
+import com.climasync.weather.exception.CountryNotFoundException;
+
 import java.util.Locale;
 
 public class Utils {
@@ -15,7 +17,7 @@ public class Utils {
             }
         }
 
-        return null;
+        throw new CountryNotFoundException();
     }
 
 }

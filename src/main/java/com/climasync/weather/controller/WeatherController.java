@@ -4,6 +4,7 @@ import com.climasync.weather.model.entity.Location;
 import com.climasync.weather.service.CachedWeatherService;
 import com.climasync.weather.service.CurrentWeatherService;
 import com.climasync.weather.service.LocationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +24,20 @@ public class WeatherController {
     private final ModelMapper modelMapper;
 
     /**
-     * @param place   -- Location name (city, state) to search for
+     * @param name   -- Location name (city, state) to search for
      * @param country -- Country code (e.g. "US") to search for
      * @return
      */
     @GetMapping("/current")
-    public ResponseEntity<?> getCurrentWeatherByPlaceAndCountry(@RequestParam(name = "q") String place, @RequestParam(name = "country") String country) {
-        Location location = locationService.getLocationByPlaceAndCountry(place, country);
+    public ResponseEntity<?> getCurrentWeatherByPlaceAndCountry(@RequestParam(name = "q") String name, @RequestParam(name = "country") String country) throws JsonProcessingException {
+        Location location = locationService.getLocationByNameAndCountry(name, country);
 
-        return ResponseEntity.ok("okay");
+//        Location =
+//
+//        CachedWeather cachedWeather = cachedWeatherService.findByLocation(location);
+
+
+        return ResponseEntity.ok(location);
     }
 
 }

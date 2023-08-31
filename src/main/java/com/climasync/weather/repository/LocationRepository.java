@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface LocationRepository extends MongoRepository<Location, String> {
-    Optional<Location> findByPlaceAndCountry(String place, String country);
+    Optional<Location> findByNameAndCountry(String name, String country);
 
 }

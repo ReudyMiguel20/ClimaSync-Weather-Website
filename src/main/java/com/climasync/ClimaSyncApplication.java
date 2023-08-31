@@ -22,6 +22,8 @@ public class ClimaSyncApplication {
             String countryName = locale.getDisplayCountry();
 
             System.out.println(countryName);
+
+            System.out.println();
         };
     }
 
