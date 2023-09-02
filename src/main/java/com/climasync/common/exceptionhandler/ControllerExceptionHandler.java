@@ -52,6 +52,13 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
                 .message("The requested location doesn't exist, please try again.")
                 .path(path)
                 .build();
+//        CustomErrorMessage customErrorMessage = new CustomErrorMessage(
+//                LocalDateTime.now(),
+//                404,
+//                "Not Found",
+//                "The requested location doesn't exist, please try again.",
+//                path
+//        );
 
         return ResponseEntity.status(404).body(customErrorMessage);
     }

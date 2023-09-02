@@ -62,7 +62,6 @@ public class LocationServiceImpl implements LocationService {
      * @param name - Location name (city, state) to search for
      * @param country - Country name to search for, it will be converted to two-letter country code later on
      * @return - Location object
-     * @throws JsonProcessingException
      */
     public Location getLocationFromExternalApi(String name, String country) throws JsonProcessingException {
         String countryConvertedToTwoLetter = getCountryCode(country);
