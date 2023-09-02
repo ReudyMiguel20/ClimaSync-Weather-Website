@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.climasync.ClimaSyncApplication
+web: java -jar target/ClimaSync-0.0.1-SNAPSHOT.jar
