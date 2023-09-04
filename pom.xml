@@ -44,6 +44,12 @@
 <!--        </dependency>-->
 
 
+<!--            <dependency>-->
+<!--                <groupId>org.mongodb</groupId>-->
+<!--                <artifactId>mongodb-driver-sync</artifactId>-->
+<!--                <version>4.10.2</version>-->
+<!--            </dependency>-->
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

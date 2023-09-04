@@ -1,6 +1,8 @@
 package com.climasync.weather.model.entity;
 
 import com.climasync.weather.model.dto.WeatherCondition;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
 @Document
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CurrentWeather {
 
     @Id

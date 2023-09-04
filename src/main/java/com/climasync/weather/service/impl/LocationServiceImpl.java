@@ -66,10 +66,10 @@ public class LocationServiceImpl implements LocationService {
     public Location getLocationFromExternalApi(String name, String country) throws JsonProcessingException {
         String countryConvertedToTwoLetter = getCountryCode(country);
 
-        String locationUriRequest = getGeolocationWeatherApiUri + name + "&limit=100" + "&appid=" +getOpenWeatherApiKey;
+        String urlRequest = getGeolocationWeatherApiUri + name + "&limit=100" + "&appid=" +getOpenWeatherApiKey;
 
         Mono<String> jsonResponseMono = webClient.get()
-                .uri(locationUriRequest)
+                .uri(urlRequest)
                 .retrieve()
                 .bodyToMono(String.class);
 

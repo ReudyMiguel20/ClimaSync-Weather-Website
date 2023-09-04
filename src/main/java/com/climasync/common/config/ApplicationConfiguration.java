@@ -16,8 +16,11 @@ public class ApplicationConfiguration {
     @Value("${openweatherapi.apiKey}")
     private String openWeatherApiKey;
 
-    @Value("${openweatherapi.geolocationURI}")
+    @Value("${openweatherapi.geolocationURL}")
     private String geolocationWeatherApiUri;
+
+    @Value("${openweatherapi.currentWeatherDataURL}")
+    private String currentWeatherDataUri;
 
     @Bean
     public ModelMapper modelMapper() {
@@ -32,6 +35,11 @@ public class ApplicationConfiguration {
     @Bean
     public String getGeolocationWeatherApiUri() {
         return geolocationWeatherApiUri;
+    }
+
+    @Bean
+    public String getCurrentWeatherDataUri() {
+        return currentWeatherDataUri;
     }
 
     @Bean
