@@ -1,6 +1,7 @@
 package com.climasync.weather.service.impl;
 
 
+import com.climasync.common.utils.MapToCurrentWeatherConverter;
 import com.climasync.weather.model.dto.WeatherCondition;
 import com.climasync.weather.model.entity.CurrentWeather;
 import com.climasync.weather.model.entity.Location;
@@ -13,9 +14,13 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+
+import static com.climasync.common.utils.Utils.copyNonNullProperties;
 
 import java.util.List;
 import java.util.Map;
@@ -31,16 +36,14 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
     private final ModelMapper modelMapper;
     private final String getOpenWeatherApiKey;
     private final String getCurrentWeatherDataUri;
+    private final MapToCurrentWeatherConverter converter;
 
 
     /**
-     *
      * @param location - Location object to search for in the database, if the location doesn't exist in the database,
      *                 it will search for it in the OpenWeatherMap API and return a CurrentWeather object
      *                 if the place and country exists in the API.
-     *
      * @return - CurrentWeather object or throw an exception if the location doesn't exist in the database or in the API
-     *
      * @throws JsonProcessingException - If the JSON response from the API can't be converted to a CurrentWeather object7
      */
     @Override
@@ -54,8 +57,14 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
         return weatherForLocation;
     }
 
+    /**
+     * @param location - Location object to search for in the OpenWeatherMap API
+     * @return - CurrentWeather object with the data from the API
+     * @throws JsonProcessingException - If the JSON response from the API can't be converted to a CurrentWeather object
+     */
     @Override
     public CurrentWeather getCurrentWeatherFromExternalApi(Location location) throws JsonProcessingException {
+        // Make the request to the OpenWeather API
         String locationInfo = String.format("?lat=%f&lon=%f&units=metric&appid=%s", location.getLat(), location.getLon(), getOpenWeatherApiKey);
         String urlRequest = getCurrentWeatherDataUri + locationInfo;
 
@@ -68,43 +77,25 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
         // Convert the JSON response to a CurrentWeather object
         String jsonResponse = jsonResponseMono.block();
 
+
+        // Configure the ObjectMapper to ignore unknown properties
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
 
-        CurrentWeather currentWeatherForLocation = objectMapper.readValue(jsonResponse, CurrentWeather.class);
+        // Parse the Json into a map to access the weather array and the main array separately
+        Map<String, Object> jsonMap = objectMapper.readValue(jsonResponse, new TypeReference<Map<String, Object>>() {
+        });
 
-        // Parse the Json into a map
-        Map<String, Object> jsonMap = objectMapper.readValue(jsonResponse, new TypeReference<Map<String, Object>>() {});
 
-        // Access the weather array from the map
+        // Access the 'weather' array from the map
         List<Map<String, Object>> weatherArray = (List<Map<String, Object>>) jsonMap.get("weather");
-//
-//        System.out.println("Weather Data:");
-//        for (Map<String, Object> weatherData: weatherArray) {
-//            System.out.println("Main: " + weatherData.get("main"));
-//            System.out.println("Description " + weatherData.get("description"));
-//        }
 
-        // Access the "main" object from the Map
-        Map<String, Object> mainObject = (Map<String, Object>) jsonMap.get("main");
+        // Access the 'main' array from the Map
+        Map<String, Object> mainArray = (Map<String, Object>) jsonMap.get("main");
 
-        System.out.println("\nMain Weather Data:");
-        for (Map.Entry<String, Object> entry : mainObject.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            System.out.println(key + ": " + value);
-        }
+        //Create and assigns the respective values for the 'CurrentWeather' object
+        CurrentWeather currentWeatherForLocation = createCurrentWeatherForecastForLocation(location, weatherArray, mainArray);
 
-        // (Considering putting all three methods into one to modify the CurrentWeather object)
-
-        // Assign the location to the CurrentWeather object
-        assignLocationToCurrentWeather(location, currentWeatherForLocation);
-
-        // Method that creates a 'WeatherCondition' object and assigns it to the 'CurrentWeather' object
-        assignWeatherConditionToCurrentWeather(weatherArray, currentWeatherForLocation);
-
-        // Assign the temperature values to the 'CurrentWeather' object
-        assignTemperatureValuesToCurrentWeather(mainObject, currentWeatherForLocation);
 
         // Save the CurrentWeather object to the database and return it
         saveForecast(currentWeatherForLocation);
@@ -114,6 +105,21 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
     @Override
     public CurrentWeather saveForecast(CurrentWeather currentWeather) {
         return currentWeatherRepository.save(currentWeather);
+    }
+
+    public CurrentWeather createCurrentWeatherForecastForLocation(Location location, List<Map<String, Object>> weatherArray, Map<String, Object> mainArray) throws JsonProcessingException {
+        CurrentWeather currentWeatherForLocation = new CurrentWeather();
+
+        // Assign the location to the CurrentWeather object
+        assignLocationToCurrentWeather(location, currentWeatherForLocation);
+
+        // Method that creates a 'WeatherCondition' object and assigns it to the 'CurrentWeather' object
+        assignWeatherConditionToCurrentWeather(weatherArray, currentWeatherForLocation);
+
+        // Assign the temperature values to the 'CurrentWeather' object
+        assignTemperatureValuesToCurrentWeather(mainArray, currentWeatherForLocation);
+
+        return currentWeatherForLocation;
     }
 
     public void assignWeatherConditionToCurrentWeather(List<Map<String, Object>> weather, CurrentWeather currentWeather) {
@@ -133,15 +139,11 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
     }
 
     public void assignTemperatureValuesToCurrentWeather(Map<String, Object> mainValues, CurrentWeather currentWeather) throws JsonProcessingException {
-//        modelMapper.addMappings(new CustomTempPropertyMap());
+        // Create a CurrentWeather object with only the temperature values
+        CurrentWeather currentWeatherWithOnlyTemps = converter.convert(mainValues);
 
-        //Can use modelmapper to map the 'Map' to a currentWeather object
-//        CurrentWeather currentWeatherWithOnlyTemps = WeatherMapper.mapToCurrentWeather()
-
-        //Can use Apache BeanUtils to fill the values from one object to another
-        for (Map.Entry<String, Object> values : mainValues.entrySet()) {
-
-        }
+        // Copy the temperature values to the CurrentWeather object
+        copyNonNullProperties(currentWeatherWithOnlyTemps, currentWeather);
     }
 
 }

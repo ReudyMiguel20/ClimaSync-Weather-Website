@@ -35,9 +35,9 @@ public class CurrentWeather {
     @JsonProperty("temp_max")
     private double maxTemperature;
     @JsonProperty("pressure")
-    private Integer pressure;
+    private int pressure;
     @JsonProperty("humidity")
-    private Integer humidity;
+    private int humidity;
     // -------------------------------------------------------------------------------
 
     private double windSpeed;
