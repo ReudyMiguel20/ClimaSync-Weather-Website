@@ -6,5 +6,9 @@ import com.climasync.weather.model.entity.Location;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface CurrentWeatherService {
+    CurrentWeather getCurrentWeatherForLocation(Location location) throws JsonProcessingException;
+
     CurrentWeather getCurrentWeatherFromExternalApi(Location location) throws JsonProcessingException;
+
+    CurrentWeather saveForecast(CurrentWeather currentWeather);
 }

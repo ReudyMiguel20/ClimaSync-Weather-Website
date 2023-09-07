@@ -1,6 +1,7 @@
 package com.climasync.common.config;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
+//import com.climasync.common.utils.CustomTempPropertyMap;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -26,6 +27,11 @@ public class ApplicationConfiguration {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
+//    @Bean
+//    public ModelMapper tempMapper() {
+
+//    }
 
     @Bean
     public String getOpenWeatherApiKey() {

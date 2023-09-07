@@ -1,5 +1,6 @@
 package com.climasync.weather.controller;
 
+import com.climasync.weather.model.entity.CurrentWeather;
 import com.climasync.weather.model.entity.Location;
 import com.climasync.weather.service.CachedWeatherService;
 import com.climasync.weather.service.CurrentWeatherService;
@@ -32,12 +33,14 @@ public class WeatherController {
     public ResponseEntity<?> getCurrentWeatherByPlaceAndCountry(@RequestParam(name = "q") String name, @RequestParam(name = "country") String country) throws JsonProcessingException {
         Location location = locationService.getLocationByNameAndCountry(name, country);
 
+        CurrentWeather currentWeatherByPlaceAndCountry = currentWeatherService.getCurrentWeatherForLocation(location);
+
 //        Location =
 //
 //        CachedWeather cachedWeather = cachedWeatherService.findByLocation(location);
 
 
-        return ResponseEntity.ok(location);
+        return ResponseEntity.ok(currentWeatherByPlaceAndCountry);
     }
 
 }
