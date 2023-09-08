@@ -25,7 +25,7 @@ public class WeatherController {
     private final ModelMapper modelMapper;
 
     /**
-     * @param name   -- Location name (city, state) to search for
+     * @param name    -- Location name (city, state) to search for
      * @param country -- Country code (e.g. "US") to search for
      * @return
      */

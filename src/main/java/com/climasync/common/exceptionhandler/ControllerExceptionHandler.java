@@ -21,7 +21,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
-                                                                              HttpStatusCode status, WebRequest request) {
+                                                                  HttpStatusCode status, WebRequest request) {
         //Initializing the HttpServletRequest object to get the path of the request that caused the error.
         HttpServletRequest requestServlet = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String path = requestServlet.getRequestURI();
@@ -35,7 +35,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
                 .path(path)
                 .build();
 
-                return ResponseEntity.badRequest().body(customErrorMessage);
+        return ResponseEntity.badRequest().body(customErrorMessage);
 
     }
 

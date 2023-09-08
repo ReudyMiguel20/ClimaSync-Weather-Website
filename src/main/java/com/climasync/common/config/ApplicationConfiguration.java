@@ -6,11 +6,9 @@ import com.climasync.common.utils.MapToCurrentWeatherConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.ui.Model;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration

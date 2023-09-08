@@ -1,2 +1,3 @@
 # ClimaSync (Weather API)
- Weather API
+
+Weather API

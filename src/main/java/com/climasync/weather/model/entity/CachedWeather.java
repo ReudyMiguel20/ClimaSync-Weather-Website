@@ -19,7 +19,7 @@ public class CachedWeather {
 
     @Id
     private String id;
-    @Indexed (unique = true)
+    @Indexed(unique = true)
     private Location location;
     private CurrentWeather data;
     private LocalDateTime timestamp;

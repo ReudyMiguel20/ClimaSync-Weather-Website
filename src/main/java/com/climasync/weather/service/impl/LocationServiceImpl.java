@@ -28,17 +28,16 @@ public class LocationServiceImpl implements LocationService {
     private final String getGeolocationWeatherApiUri;
 
 
-
     @Override
     public Location saveLocation(Location location) {
-       return locationRepository.save(location);
+        return locationRepository.save(location);
     }
 
     /**
      * This method will search for a location in the database and if it doesn't exist, it will search for it in the
      * OpenWeatherMap API and return a Location object if the place and country exists in the API.
      *
-     * @param name - Location name (city, state) to search for
+     * @param name    - Location name (city, state) to search for
      * @param country - Country name to search for, it will be converted to two-letter country code later on
      * @return - Location object or throw an exception if the location doesn't exist in the database or in the API
      * @throws JsonProcessingException
@@ -59,14 +58,14 @@ public class LocationServiceImpl implements LocationService {
      * This method will search for a location in the OpenWeatherMap API and return a Location object if the place and
      * country exists in the API.
      *
-     * @param name - Location name (city, state) to search for
+     * @param name    - Location name (city, state) to search for
      * @param country - Country name to search for, it will be converted to two-letter country code later on
      * @return - Location object
      */
     public Location getLocationFromExternalApi(String name, String country) throws JsonProcessingException {
         String countryConvertedToTwoLetter = getCountryCode(country);
 
-        String urlRequest = getGeolocationWeatherApiUri + name + "&limit=100" + "&appid=" +getOpenWeatherApiKey;
+        String urlRequest = getGeolocationWeatherApiUri + name + "&limit=100" + "&appid=" + getOpenWeatherApiKey;
 
         Mono<String> jsonResponseMono = webClient.get()
                 .uri(urlRequest)
@@ -76,23 +75,22 @@ public class LocationServiceImpl implements LocationService {
         String jsonResponse = jsonResponseMono.block();
 
 
-
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<Location> locationsFound = objectMapper.readValue(jsonResponse, new TypeReference<List<Location>>() {});
-
+        List<Location> locationsFound = objectMapper.readValue(jsonResponse, new TypeReference<List<Location>>() {
+        });
 
 
         for (Location location : locationsFound) {
 
             if (location.getName().equalsIgnoreCase(name) && location.getCountry().equalsIgnoreCase(countryConvertedToTwoLetter)) {
-               Location locationToReturn = Location.builder()
-                       .name(name)
-                       .country(country)
-                       .lat(location.getLat())
-                       .lon(location.getLon())
-                       .build();
+                Location locationToReturn = Location.builder()
+                        .name(name)
+                        .country(country)
+                        .lat(location.getLat())
+                        .lon(location.getLon())
+                        .build();
 
-               return saveLocation(locationToReturn);
+                return saveLocation(locationToReturn);
             }
         }
 

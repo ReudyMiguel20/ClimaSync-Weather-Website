@@ -35,5 +35,4 @@ public class CachedWeatherImpl implements CachedWeatherService {
     }
 
 
-
 }
