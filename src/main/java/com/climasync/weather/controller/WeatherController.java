@@ -25,6 +25,8 @@ public class WeatherController {
     private final ModelMapper modelMapper;
 
     /**
+     * HTTP GET request to get the current weather for a location by its name and country code (e.g. "US")
+     *
      * @param name    -- Location name (city, state) to search for
      * @param country -- Country code (e.g. "US") to search for
      * @return
@@ -34,11 +36,6 @@ public class WeatherController {
         Location location = locationService.getLocationByNameAndCountry(name, country);
 
         CurrentWeather currentWeatherByPlaceAndCountry = currentWeatherService.getCurrentWeatherForLocation(location);
-
-//        Location =
-//
-//        CachedWeather cachedWeather = cachedWeatherService.findByLocation(location);
-
 
         return ResponseEntity.ok(currentWeatherByPlaceAndCountry);
     }

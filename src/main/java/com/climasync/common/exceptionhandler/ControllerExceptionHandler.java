@@ -1,5 +1,6 @@
 package com.climasync.common.exceptionhandler;
 
+import com.climasync.user.exception.UserNotFound;
 import com.climasync.weather.exception.CountryNotFoundException;
 import com.climasync.weather.exception.LocationNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -52,13 +53,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
                 .message("The requested location doesn't exist, please try again.")
                 .path(path)
                 .build();
-//        CustomErrorMessage customErrorMessage = new CustomErrorMessage(
-//                LocalDateTime.now(),
-//                404,
-//                "Not Found",
-//                "The requested location doesn't exist, please try again.",
-//                path
-//        );
 
         return ResponseEntity.status(404).body(customErrorMessage);
     }
@@ -74,6 +68,23 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
                 .status(404)
                 .error("Not Found")
                 .message("This country doesn't exist, please try again.")
+                .path(path)
+                .build();
+
+        return ResponseEntity.status(404).body(customErrorMessage);
+    }
+
+    @ExceptionHandler(UserNotFound.class)
+    public ResponseEntity<CustomErrorMessage> handleUserNotFound() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String path = request.getRequestURI();
+
+        //Creating the body of the response
+        CustomErrorMessage customErrorMessage = CustomErrorMessage.builder()
+                .timestamp(LocalDateTime.now())
+                .status(404)
+                .error("Not Found")
+                .message("This user doesn't exist in our database, please try again.")
                 .path(path)
                 .build();
 
