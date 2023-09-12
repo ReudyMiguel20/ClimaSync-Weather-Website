@@ -23,7 +23,9 @@ public class SecurityConfiguration {
 
                 .authorizeRequests(auth -> {
                     auth
-                            .requestMatchers("/api/weather/current").hasAnyAuthority("USER", "ADMIN")
+//                            .requestMatchers("/api/weather/current").hasAnyAuthority("USER", "ADMIN")
+//                            .anyRequest()
+                                                        .requestMatchers("/api/weather/current").permitAll()
                             .anyRequest()
                             .permitAll();
                 })

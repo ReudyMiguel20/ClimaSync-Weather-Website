@@ -1,5 +1,6 @@
 package com.climasync.weather.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Location {
 
     @Id
+    @JsonIgnore
     private String id;
     private String name;
     private String country;

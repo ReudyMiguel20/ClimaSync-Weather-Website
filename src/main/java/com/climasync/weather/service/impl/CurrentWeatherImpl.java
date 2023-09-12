@@ -15,11 +15,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +42,29 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
     private final String getCurrentWeatherDataUri;
     private final MapToCurrentWeatherConverter converter;
 
+    @Override
+    public CurrentWeather saveForecast(CurrentWeather currentWeather) {
+        return currentWeatherRepository.save(currentWeather);
+    }
+
+    @Override
+    public void deleteAllForecasts() {
+        currentWeatherRepository.deleteAll();
+    }
+
+    public void deleteForecast(CurrentWeather currentWeather) {
+        currentWeatherRepository.deleteById(currentWeather.getId());
+    }
+
 
     /**
+     * Method that searches for a 'CurrentWeather' object in the database, if it doesn't exist, it will search for it
+     * in the OpenWeatherMap API and return a CurrentWeather object if the place and country exists in the API.
+     * <p>
+     * If the 'CurrentWeather' object exists in the database, it will check if it's less than 10 minutes old, if it is,
+     * it will return the same object, if it's not, it will delete it from the database and return a new 'CurrentWeather'
+     * object with the updated information from the API.
+     *
      * @param location - Location object to search for in the database, if the location doesn't exist in the database,
      *                 it will search for it in the OpenWeatherMap API and return a CurrentWeather object
      *                 if the place and country exists in the API.
@@ -50,11 +75,12 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
     public CurrentWeather getCurrentWeatherForLocation(Location location) throws JsonProcessingException {
         CurrentWeather weatherForLocation = currentWeatherRepository.findByLocation(location).orElse(null);
 
-        if (weatherForLocation == null) {
+        if (weatherForLocation != null) {
+            weatherForLocation = checkForecastTimeExpiration(weatherForLocation);
+            return weatherForLocation;
+        } else {
             return getCurrentWeatherFromExternalApi(location);
         }
-
-        return weatherForLocation;
     }
 
     /**
@@ -78,7 +104,6 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
                 .retrieve()
                 .bodyToMono(String.class);
 
-        // Convert the JSON response to a CurrentWeather object
         String jsonResponse = jsonResponseMono.block();
 
         // Configure the ObjectMapper to ignore unknown properties and ignored properties from the JSON response
@@ -106,11 +131,6 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
         // Save the CurrentWeather object to the database and return it
         saveForecast(currentWeatherForLocation);
         return currentWeatherForLocation;
-    }
-
-    @Override
-    public CurrentWeather saveForecast(CurrentWeather currentWeather) {
-        return currentWeatherRepository.save(currentWeather);
     }
 
     // Method that creates and assigns the respective values for the 'CurrentWeather' object and returns it
@@ -155,6 +175,33 @@ public class CurrentWeatherImpl implements CurrentWeatherService {
 
         // Copy the temperature values to the CurrentWeather object
         copyNonNullProperties(currentWeatherWithOnlyTemps, currentWeather);
+    }
+
+    /**
+     * Method that checks if the 'CurrentWeather' object is less than 10 minutes old, if it is, it will delete it from
+     * the database and return a new 'CurrentWeather' object with the updated information from the API.
+     *
+     * @param currentWeather - CurrentWeather object to check if it's less than 10 minutes old
+     * @return - CurrentWeather object with the updated information from the API or the same object if it's less than 10 minutes old
+     * @throws JsonProcessingException - If the JSON response from the API can't be converted to a CurrentWeather object
+     */
+    public CurrentWeather checkForecastTimeExpiration(CurrentWeather currentWeather) throws JsonProcessingException {
+        LocalTime currentTime = LocalTime.now();
+        LocalTime currentWeatherTime = currentWeather.getTimestamp().toLocalTime();
+
+        Duration duration = Duration.between(currentTime, currentWeatherTime);
+
+        // Condition to check if the 'CurrentWeather' time is less than 10 minutes, if it is, it will return the same object
+        // If it's not, it will delete it from the database and return a new 'CurrentWeather' object with the updated information from the API
+        if (duration.toMinutes() <= -5) {
+            Location location = currentWeather.getLocation();
+
+            deleteForecast(currentWeather);
+
+            return getCurrentWeatherFromExternalApi(location);
+        } else {
+            return currentWeather;
+        }
     }
 
 }

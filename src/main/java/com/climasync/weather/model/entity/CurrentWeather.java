@@ -1,6 +1,8 @@
 package com.climasync.weather.model.entity;
 
 import com.climasync.weather.model.dto.WeatherCondition;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +22,9 @@ import java.time.LocalDateTime;
 public class CurrentWeather {
 
     @Id
+    @JsonIgnore
     private String id;
+
     @Indexed(unique = true)
     private Location location;
     private WeatherCondition weatherCondition;
@@ -41,6 +45,8 @@ public class CurrentWeather {
     // -------------------------------------------------------------------------------
 
     private double windSpeed;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "UTC")
     private LocalDateTime timestamp;
 
     public CurrentWeather(Location location, WeatherCondition weatherCondition, double temp, double feelsLike, double minTemperature,

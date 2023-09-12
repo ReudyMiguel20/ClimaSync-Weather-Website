@@ -17,8 +17,8 @@ import javax.validation.Valid;
 @RequestMapping("/api/user")
 public class UserController {
 
-    @PostMapping
-    public ResponseEntity<StatusMessage> createNewUser(@Valid @RequestBody RegisterRequest request) {
-        
-    }
+//    @PostMapping
+//    public ResponseEntity<StatusMessage> createNewUser(@Valid @RequestBody RegisterRequest request) {
+//
+//    }
 }
