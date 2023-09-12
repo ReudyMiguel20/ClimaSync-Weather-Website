@@ -47,6 +47,7 @@ public class CurrentWeather {
     private double windSpeed;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "UTC")
+    @JsonIgnore
     private LocalDateTime timestamp;
 
     public CurrentWeather(Location location, WeatherCondition weatherCondition, double temp, double feelsLike, double minTemperature,
