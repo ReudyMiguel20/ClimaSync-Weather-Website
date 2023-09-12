@@ -25,7 +25,7 @@ public class CurrentWeather {
     @JsonIgnore
     private String id;
 
-    @Indexed(unique = true)
+
     private Location location;
     private WeatherCondition weatherCondition;
 
