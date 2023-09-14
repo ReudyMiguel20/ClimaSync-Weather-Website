@@ -32,12 +32,19 @@ public class WeatherController {
      * @return
      */
     @GetMapping("/current")
-    public ResponseEntity<?> getCurrentWeatherByPlaceAndCountry(@RequestParam(name = "q") String name, @RequestParam(name = "country") String country) throws JsonProcessingException {
+    public ResponseEntity<CurrentWeather> getCurrentWeatherByPlaceAndCountry(@RequestParam(name = "q") String name, @RequestParam(name = "country") String country) throws JsonProcessingException {
         Location location = locationService.getLocationByNameAndCountry(name, country);
 
         CurrentWeather currentWeatherByPlaceAndCountry = currentWeatherService.getCurrentWeatherForLocation(location);
 
         return ResponseEntity.ok(currentWeatherByPlaceAndCountry);
+    }
+
+    @GetMapping("/location")
+    public ResponseEntity<Location> getLocationByPlaceAndCountry(@RequestParam(name = "q") String name, @RequestParam(name = "country") String country) throws JsonProcessingException {
+        Location location = locationService.getLocationByNameAndCountry(name, country);
+
+        return ResponseEntity.ok(location);
     }
 
 }

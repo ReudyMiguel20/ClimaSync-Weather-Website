@@ -10,12 +10,14 @@ import java.util.Locale;
 
 public class Utils {
 
-    //Method that converts the country name into its corresponding two-letter country code, if the country doesn't exist
-    //then it returns null
+    // Method that converts the country name into its corresponding two-letter country code, if the country doesn't exist then it returns null
+
+    // The system language must be in English for this method to work. This can brick the entire project.
     public static String getCountryCode(String countryName) {
         Locale[] locales = Locale.getAvailableLocales();
 
         for (Locale locale : locales) {
+            System.out.println(locale.getDisplayCountry());
             if (countryName.equalsIgnoreCase(locale.getDisplayCountry())) {
                 return locale.getCountry();
             }
