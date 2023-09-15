@@ -25,7 +25,8 @@ public class SecurityConfiguration {
                     auth
 //                            .requestMatchers("/api/weather/current").hasAnyAuthority("USER", "ADMIN")
 //                            .anyRequest()
-                                                        .requestMatchers("/api/weather/current").permitAll()
+                            .requestMatchers("/api/weather/current").hasAnyRole("ADMIN", "USER")
+                            .requestMatchers("/api/weather/current").hasAnyAuthority("ADMIN", "USER")
                             .anyRequest()
                             .permitAll();
                 })

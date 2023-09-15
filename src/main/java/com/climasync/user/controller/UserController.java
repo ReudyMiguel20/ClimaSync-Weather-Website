@@ -2,6 +2,7 @@ package com.climasync.user.controller;
 
 import com.climasync.common.dto.StatusMessage;
 import com.climasync.user.model.dto.RegisterRequest;
+import com.climasync.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,14 @@ import javax.validation.Valid;
 @RequestMapping("/api/user")
 public class UserController {
 
-//    @PostMapping
-//    public ResponseEntity<StatusMessage> createNewUser(@Valid @RequestBody RegisterRequest request) {
-//
-//    }
+    private final UserService userService;
+
+    @PostMapping("/register")
+    public ResponseEntity<StatusMessage> createNewUser(@Valid @RequestBody RegisterRequest registerRequest) {
+        StatusMessage statusMessage = userService.createNewUser(registerRequest);
+
+        return ResponseEntity.ok(statusMessage);
+    }
+
+
 }

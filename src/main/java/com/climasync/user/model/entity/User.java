@@ -2,11 +2,9 @@ package com.climasync.user.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -44,8 +42,10 @@ public class User implements UserDetails {
     @NotBlank(message = "Email cannot be blank")
     @Email(regexp = "^(?i)[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$")
     @Size(min = 7, message = "Email must be at least 7 character long")
+    @Indexed(unique = true)
     private String email;
 
+    @Getter
     @NotEmpty(message = "Password cannot be empty")
     @NotBlank(message = "Password cannot be blank")
     @Size(min = 7, message = "Password must be at least 7 character long")
@@ -62,10 +62,6 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     @Override

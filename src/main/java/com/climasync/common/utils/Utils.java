@@ -13,7 +13,7 @@ public class Utils {
     // Method that converts the country name into its corresponding two-letter country code, if the country doesn't exist then it returns null
 
     // The system language must be in English for this method to work. This can brick the entire project.
-    // -- Need to add a way for it that the user system language doesn't depend for this to work and set a default to english --
+    // -- Need to add a way for it that the user system language doesn't depends on this to work and set a default to english --
     public static String getCountryCode(String countryName) {
         Locale[] locales = Locale.getAvailableLocales();
 
@@ -26,6 +26,7 @@ public class Utils {
         throw new CountryNotFoundException();
     }
 
+    // Method that copies the non-null properties from one object to another object of the same type (e.g. from Location to Location) using Apache Commons BeanUtils
     public static void copyNonNullProperties(Object source, Object target) {
         BeanUtilsBean beanUtilsBean = new BeanUtilsBean();
         PropertyUtilsBean propertyUtilsBean = beanUtilsBean.getPropertyUtils();
