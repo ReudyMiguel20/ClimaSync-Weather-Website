@@ -23,9 +23,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-
+        userRepository.save(user);
     }
 
+    /**
+     * Saves the user to the database and returns a status message confirming the user creation was successful.
+     *
+     * @param user - the user to save to the database and return a status message for it
+     * @return - the status message confirming the user creation was successful
+     */
     @Override
     public StatusMessage saveUserAndReturnStatusMessage(User user) {
         userRepository.save(user);
@@ -40,6 +46,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    /**
+     * Method that uses ModelMapper is used to map the RegisterRequest object to a User object, after that it encodes the password and assigns
+     * a role to the user before saving it to the database and returning a status message to the controller confirming the user creation was successful.
+     *
+     * @param registerRequest - the register request object that contains the user information to be mapped to a User object.
+     * @return - the status message confirming the user creation was successful
+     */
     @Override
     public StatusMessage createNewUser(RegisterRequest registerRequest) {
         User user = modelMapper.map(registerRequest, User.class);
