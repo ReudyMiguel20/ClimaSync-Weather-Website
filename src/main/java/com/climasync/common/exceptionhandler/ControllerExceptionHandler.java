@@ -32,8 +32,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         HttpServletRequest requestServlet = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String path = requestServlet.getRequestURI();
 
-
-
         //Creating the body of the response
         CustomErrorMessage customErrorMessage = CustomErrorMessage.builder()
                 .timestamp(LocalDateTime.now().format(formatter))
@@ -44,7 +42,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
 
         return ResponseEntity.badRequest().body(customErrorMessage);
-
     }
 
     @ExceptionHandler(LocationNotFoundException.class)
