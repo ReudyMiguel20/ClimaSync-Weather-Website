@@ -1,11 +1,11 @@
 package com.climasync.user.service;
 
 import com.climasync.common.dto.StatusMessage;
+import com.climasync.user.exception.UserAlreadyExists;
 import com.climasync.user.model.dto.RegisterRequest;
 import com.climasync.user.model.entity.Role;
 import com.climasync.user.model.entity.User;
 import com.climasync.user.repository.UserRepository;
-import jdk.jshell.Snippet;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,7 +34,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public StatusMessage saveUserAndReturnStatusMessage(User user) {
-        userRepository.save(user);
+        if (doUserAlreadyExists(user)) {
+            throw new UserAlreadyExists();
+        } else {
+            saveUser(user);
+        }
 
         return StatusMessage.builder()
                 .message("User created successfully")
@@ -75,4 +79,9 @@ public class UserServiceImpl implements UserService {
             user.setRole(Role.USER);
         }
     }
+
+    public boolean doUserAlreadyExists(User user) {
+        return userRepository.findByEmail(user.getEmail()).isPresent();
+    }
+
 }

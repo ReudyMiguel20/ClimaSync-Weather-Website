@@ -4,7 +4,6 @@ import com.climasync.common.dto.StatusMessage;
 import com.climasync.user.model.dto.RegisterRequest;
 import com.climasync.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
