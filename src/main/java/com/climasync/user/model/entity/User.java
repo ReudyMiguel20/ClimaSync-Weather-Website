@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -41,7 +42,7 @@ public class User implements UserDetails {
     @NotBlank(message = "Email cannot be blank")
     @Email(regexp = "^(?i)[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$")
     @Size(min = 7, message = "Email must be at least 7 character long")
-//    @Indexed(unique = true)
+    @Indexed(unique = true)
     private String email;
 
     @Getter
@@ -52,6 +53,8 @@ public class User implements UserDetails {
     private String password;
 
     private Role role;
+
+    // private List<T> browserHistory;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
