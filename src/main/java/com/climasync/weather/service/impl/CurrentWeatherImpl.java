@@ -2,6 +2,7 @@ package com.climasync.weather.service.impl;
 
 
 import com.climasync.common.utils.MapToCurrentWeatherConverter;
+import com.climasync.user.model.entity.User;
 import com.climasync.weather.model.dto.WeatherCondition;
 import com.climasync.weather.model.entity.CurrentWeather;
 import com.climasync.weather.model.entity.Location;

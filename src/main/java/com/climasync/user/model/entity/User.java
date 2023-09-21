@@ -1,5 +1,7 @@
 package com.climasync.user.model.entity;
 
+import com.climasync.weather.model.entity.CurrentWeather;
+import com.climasync.weather.model.entity.Location;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
@@ -14,8 +16,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Document
 @Data
@@ -54,7 +55,8 @@ public class User implements UserDetails {
 
     private Role role;
 
-    // private List<T> browserHistory;
+
+    private List<CurrentWeather> currentWeatherHistory = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

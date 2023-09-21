@@ -1,6 +1,7 @@
 package com.climasync.weather.service;
 
 
+import com.climasync.user.model.entity.User;
 import com.climasync.weather.model.entity.CurrentWeather;
 import com.climasync.weather.model.entity.Location;
 import com.fasterxml.jackson.core.JsonProcessingException;

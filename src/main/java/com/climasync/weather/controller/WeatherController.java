@@ -1,5 +1,7 @@
 package com.climasync.weather.controller;
 
+import com.climasync.user.model.entity.User;
+import com.climasync.user.service.UserService;
 import com.climasync.weather.model.entity.CurrentWeather;
 import com.climasync.weather.model.entity.Location;
 import com.climasync.weather.service.CachedWeatherService;
@@ -9,6 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +24,7 @@ public class WeatherController {
 
     private final CurrentWeatherService currentWeatherService;
     private final LocationService locationService;
+    private final UserService userService;
     private final CachedWeatherService cachedWeatherService;
     private final ModelMapper modelMapper;
 
@@ -32,10 +36,14 @@ public class WeatherController {
      * @return
      */
     @GetMapping("/current")
-    public ResponseEntity<CurrentWeather> getCurrentWeatherByPlaceAndCountry(@RequestParam(name = "q") String name, @RequestParam(name = "country") String country) throws JsonProcessingException {
+    public ResponseEntity<CurrentWeather> getCurrentWeatherByPlaceAndCountry(Authentication auth, @RequestParam(name = "q") String name, @RequestParam(name = "country") String country) throws JsonProcessingException {
         Location location = locationService.getLocationByNameAndCountry(name, country);
-
         CurrentWeather currentWeatherByPlaceAndCountry = currentWeatherService.getCurrentWeatherForLocation(location);
+
+        // Save the current weather to the user's history
+        String requestUserEmail = auth.getName();
+        User requestUser = userService.retrieveUserByEmail(requestUserEmail);
+        userService.saveCurrentWeatherToUserHistory(requestUser, currentWeatherByPlaceAndCountry);
 
         return ResponseEntity.ok(currentWeatherByPlaceAndCountry);
     }
