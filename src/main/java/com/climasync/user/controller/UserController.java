@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<StatusMessage> createNewUser(@Valid @RequestBody RegisterRequest registerRequest) {
-        StatusMessage statusMessage = userService.createNewUser(registerRequest);
+        StatusMessage statusMessage = userService.createNewUserAndAssignRole(registerRequest);
 
         return ResponseEntity.ok(statusMessage);
     }

@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -30,13 +31,13 @@ public class ApplicationConfiguration {
 
     @Bean
     public ModelMapper modelMapper() {
-        ModelMapper modelMapperTest = new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
 
         if (mapToCurrentWeatherConverter != null) {
-            modelMapperTest.addConverter(mapToCurrentWeatherConverter);
+            modelMapper.addConverter(mapToCurrentWeatherConverter);
         }
 
-        return modelMapperTest;
+        return modelMapper;
     }
 
     @Bean

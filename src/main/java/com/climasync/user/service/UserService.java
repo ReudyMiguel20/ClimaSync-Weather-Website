@@ -18,6 +18,11 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    StatusMessage createNewUser(RegisterRequest registerRequest);
+    StatusMessage createNewUserAndAssignRole(RegisterRequest registerRequest);
 
+    void assignRoleToUser(User user);
+
+    boolean doUserAlreadyExists(User user);
+
+    void deleteAll();
 }

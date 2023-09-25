@@ -15,8 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 @RequiredArgsConstructor
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -87,7 +88,7 @@ public class UserServiceImpl implements UserService {
      * @return - the status message confirming the user creation was successful
      */
     @Override
-    public StatusMessage createNewUser(RegisterRequest registerRequest) {
+    public StatusMessage createNewUserAndAssignRole(RegisterRequest registerRequest) {
         User user = modelMapper.map(registerRequest, User.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         assignRoleToUser(user);
@@ -101,6 +102,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param user - the user to assign the role to
      */
+    @Override
     public void assignRoleToUser(User user) {
         if (getAllUsers().isEmpty()) {
             user.setRole(Role.ADMIN);
@@ -109,8 +111,14 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
     public boolean doUserAlreadyExists(User user) {
         return userRepository.findByEmail(user.getEmail()).isPresent();
+    }
+
+    @Override
+    public void deleteAll() {
+        userRepository.deleteAll();
     }
 
 }
