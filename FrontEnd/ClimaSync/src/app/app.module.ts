@@ -9,6 +9,8 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { AboutClimasyncComponent } from './about-climasync/about-climasync.component';
 import {NgOptimizedImage} from "@angular/common";
+import { FooterComponent } from './footer/footer.component';
+import { CardDescriptionComponent } from './card-description/card-description.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {NgOptimizedImage} from "@angular/common";
     NavBarComponent,
     SlideshowComponent,
     UserLoginComponent,
-    AboutClimasyncComponent
+    AboutClimasyncComponent,
+    FooterComponent,
+    CardDescriptionComponent
   ],
   imports: [
     BrowserModule,
