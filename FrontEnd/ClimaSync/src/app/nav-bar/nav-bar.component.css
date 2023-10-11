@@ -1,3 +1,37 @@
 h3 {
-  color: mediumpurple;
+  color: #6A00E4;
+  font-size: 2.5rem;
+  font-family: 'Young Serif', serif;
+}
+
+.nav-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px 0;
+}
+
+.nav-item-last {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'Young Serif', serif;
+}
+
+.nav-item {
+  border-right: black 1px solid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'Young Serif', serif;
+
 }

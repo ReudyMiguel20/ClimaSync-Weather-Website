@@ -1,0 +1,41 @@
+.about-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 50px;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  margin-top: -50px;
+}
+
+.about h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: 'Young Serif', serif;
+  color: #6A00E4;
+}
+
+.about p {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: 'Dosis', sans-serif;
+}
+
+.about-image img {
+  width: 275px;
+  height: 275px;
+  border-radius: 25%;
+  margin-bottom: 20px;
+  border: black 1px solid;
+}
+

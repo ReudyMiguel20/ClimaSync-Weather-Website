@@ -16,7 +16,7 @@ export class SlideshowComponent implements OnInit {
   @Input() indicators: boolean = true;
   @Input() controls: boolean = true;
   @Input() autoSlide: boolean = false;
-  @Input() slideInterval = 7000; //Default to 3 second
+  @Input() slideInterval = 7000;
 
   selectedIndex = 0;
 
@@ -26,7 +26,7 @@ export class SlideshowComponent implements OnInit {
     }
   }
 
-  //Changes slide in every 3 second
+  //Changes slide in every 7 second
   autoSlideImages(): void {
     setInterval(() => {
       this.onNextClick();
