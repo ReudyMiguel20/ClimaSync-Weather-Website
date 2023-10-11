@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+<div *ngIf="images && images.length > 0" class="slideshow-container">
+  <img *ngFor="let image of images, let i = index"
+       [src]="image.imageSrc" [alt]="image.imageAlt"
+       [ngClass]="{'image-active': selectedIndex === i}"
+       class="fade"
+  >
+
+  <div *ngIf="indicators" class="slideshow-dot-container">
+    <span *ngFor="let dot of images, let i = index"
+          class="dot"
+          [ngClass]="{'active': selectedIndex === i}"
+          (click)="selectImage(i)"
+    >
+    </span>
+  </div>
+
+  <button *ngIf="controls" class="btn-carousel btn-prev"
+          (click)="onPrevClick()"
+  >
+    <i class="fas fa-arrow-circle-left icon-carousel icon-prev"></i>
+  </button>
+
+  <button *ngIf="controls" class="btn-carousel btn-next"
+          (click)="onNextClick()"
+  >
+    <i class="fas fa-arrow-circle-right icon-carousel icon-next"></i>
+  </button>
+</div>
