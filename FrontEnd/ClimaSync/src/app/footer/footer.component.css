@@ -10,7 +10,7 @@ footer {
 
 .footerContainer {
   width: 100%;
-  padding: 70px 30px 20px;
+  padding: 15px 30px 20px;
   margin-top: 45px;
 }
 
@@ -49,8 +49,16 @@ footer {
   list-style: none;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
   text-decoration: none;
+}
+
+.footerNav ul li {
+  text-decoration: none;
+}
+
+.footerNav ul li a:hover {
+  color: dodgerblue;
+  transition: 0.3s;
 }
 
 .footerNav ul li a {
@@ -63,9 +71,7 @@ footer {
   font-family: 'Young Serif', serif;
 }
 
-.footerNav ul li {
-  text-decoration: none;
-}
+
 
 .footerBottom {
   display: flex;
