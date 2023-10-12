@@ -1,10 +1,10 @@
 .about-info {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  margin: 20px 0;
   padding: 20px;
+  margin: 20px 200px;
 }
 
 .about {
@@ -13,6 +13,7 @@
   align-items: center;
   align-content: center;
   margin-top: -50px;
+  padding-right: 50px;
 }
 
 .about h3 {

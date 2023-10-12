@@ -88,12 +88,13 @@ public class UserServiceImpl implements UserService {
      * @return - the status message confirming the user creation was successful
      */
     @Override
-    public StatusMessage createNewUserAndAssignRole(RegisterRequest registerRequest) {
+    public User createNewUserAndAssignRole(RegisterRequest registerRequest) {
         User user = modelMapper.map(registerRequest, User.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         assignRoleToUser(user);
+        saveUser(user);
 
-        return saveUserAndReturnStatusMessage(user);
+        return user;
     }
 
     /**

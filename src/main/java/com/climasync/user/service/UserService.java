@@ -18,7 +18,7 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    StatusMessage createNewUserAndAssignRole(RegisterRequest registerRequest);
+    User createNewUserAndAssignRole(RegisterRequest registerRequest);
 
     void assignRoleToUser(User user);
 

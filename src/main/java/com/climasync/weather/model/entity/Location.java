@@ -22,9 +22,9 @@ public class Location {
     private String id;
     private String name;
     private String country;
-    @Indexed(unique = true)
+//    @Indexed(unique = true)
     private double lat;
-    @Indexed(unique = true)
+//    @Indexed(unique = true)
     private double lon;
 
     public Location(String name, String country, double lat, double lon) {

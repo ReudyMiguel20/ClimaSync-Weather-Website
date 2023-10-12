@@ -2,29 +2,29 @@
   <div class="form-container">
 
     <h2>Sign Up</h2>
-    <form>
+    <form (ngSubmit)="onSubmit()">
 
       <div class="form-group">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+        <input type="text" name="firstName" id="firstName" placeholder="First Name" [(ngModel)]="user.firstname" required>
       </div>
 
       <div class="form-group">
         <label for="firstName">Last Name:</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+        <input type="text" name="lastName" id="lastName" placeholder="Last Name" [(ngModel)]="user.lastname" required>
       </div>
 
       <div class="form-group">
         <label for="firstName">Email Name:</label>
-        <input type="email" name="email" id="email" placeholder="Email" required>
+        <input type="email" name="email" id="email" placeholder="Email" [(ngModel)]="user.email"  required>
       </div>
 
       <div class="form-group">
         <label for="firstName">Password:</label>
-        <input type="password" name="password" id="password" placeholder="Password" required>
+        <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="user.password"  required>
       </div>
 
-      <button type="button">Register</button>
+      <button type="submit">Register</button>
 
     </form>
   </div>

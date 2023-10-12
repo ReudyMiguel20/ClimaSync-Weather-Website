@@ -11,6 +11,8 @@ import { AboutClimasyncComponent } from './about-climasync/about-climasync.compo
 import {NgOptimizedImage} from "@angular/common";
 import { FooterComponent } from './footer/footer.component';
 import { CardDescriptionComponent } from './card-description/card-description.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { CardDescriptionComponent } from './card-description/card-description.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
