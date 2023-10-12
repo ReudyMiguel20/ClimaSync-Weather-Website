@@ -6,25 +6,25 @@
 
       <div class="form-group">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" id="firstName" placeholder="First Name" [(ngModel)]="user.firstname" required>
+        <input type="text" name="firstName" id="firstName" placeholder="First name here" [(ngModel)]="user.firstname" required>
       </div>
 
       <div class="form-group">
         <label for="firstName">Last Name:</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Last Name" [(ngModel)]="user.lastname" required>
+        <input type="text" name="lastName" id="lastName" placeholder="Last name here" [(ngModel)]="user.lastname" required>
       </div>
 
       <div class="form-group">
-        <label for="firstName">Email Name:</label>
-        <input type="email" name="email" id="email" placeholder="Email" [(ngModel)]="user.email"  required>
+        <label for="firstName">Email:</label>
+        <input type="email" name="email" id="email" placeholder="example@email.com" [(ngModel)]="user.email"  required>
       </div>
 
       <div class="form-group">
         <label for="firstName">Password:</label>
-        <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="user.password"  required>
+        <input type="password" name="password" id="password" placeholder="Password must be minimum 8 characters long." [(ngModel)]="user.password"  required>
       </div>
 
-      <button type="submit">Register</button>
+      <button class="register-button" type="submit">Register</button>
 
     </form>
   </div>

@@ -1,6 +1,9 @@
+nav {
+  margin-bottom: 25px;
+}
+
 .navbar {
   background-color: #C3C3C3;
-  /*background-color: #6A00E4*/
 }
 
 h3 {
@@ -38,6 +41,11 @@ h3 {
   font-family: 'Young Serif', serif;
 }
 
-/*.nav-link {*/
-/*  color: lightgrey;*/
-/*}*/
+.nav-link:hover {
+  color: #6A00E4;
+}
+
+.nav-link:active {
+  color: white;
+  transition: color 0.01ms;
+}
