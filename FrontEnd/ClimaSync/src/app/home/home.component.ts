@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
 export class HomeComponent {
 
 
-  firstName = localStorage.getItem('firstname');
+  firstName = localStorage.getItem('first_name');
 
   images = [
     {

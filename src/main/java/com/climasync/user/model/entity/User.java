@@ -32,12 +32,12 @@ public class User implements UserDetails {
 
     @NotEmpty(message = "First Name cannot be empty")
     @NotBlank(message = "First Name cannot be blank")
-    @JsonProperty(value = "firstname")
+    @JsonProperty(value = "first_name")
     private String firstName;
 
     @NotEmpty(message = "Last Name cannot be empty")
     @NotBlank(message = "Last Name cannot be blank")
-    @JsonProperty(value = "lastname")
+    @JsonProperty(value = "last_name")
     private String lastName;
 
     @NotEmpty(message = "Email cannot be empty")

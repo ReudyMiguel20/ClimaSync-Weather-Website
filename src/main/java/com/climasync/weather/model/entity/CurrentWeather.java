@@ -23,9 +23,8 @@ public class CurrentWeather {
     @Id
     @JsonIgnore
     private String id;
-
-
     private Location location;
+    @JsonProperty("weather_condition")
     private WeatherCondition weatherCondition;
 
     // This part is found in the 'main' part of the JSON request from OpenWeatherAPI
@@ -43,6 +42,8 @@ public class CurrentWeather {
     private int humidity;
     // -------------------------------------------------------------------------------
 
+    // need to fix this
+    @JsonProperty("wind_speed")
     private double windSpeed;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "UTC")

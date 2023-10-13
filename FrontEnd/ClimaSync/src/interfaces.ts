@@ -1,6 +1,11 @@
 export interface User {
-  firstname: string;
-  lastname: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+}
+
+export interface ExistingUser {
   email: string;
   password: string;
 }

@@ -36,8 +36,21 @@ body {
 
 .login-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   text-align: center;
+}
+
+.back-homepage {
+  margin-top: 50px;
+  margin-bottom: 150px;
+}
+
+.back-homepage a {
+  color: cyan;
+  text-shadow: 2px 5px 10px #000000;
+  font-size: 16pt;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .welcome-back-notice {

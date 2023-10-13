@@ -14,11 +14,11 @@ export class UserLoginComponent {
   showSpinner = false;
 
   user: User = {
-    firstname: '',
-    lastname: '',
+    first_name: '',
+    last_name: '',
     email: '',
-    password: '',
-  }
+    password: ''
+  };
 
   constructor(private userService: UserServiceService,
               private router: Router) {
@@ -28,8 +28,8 @@ export class UserLoginComponent {
 
     this.userService.createNewUser(this.user).subscribe((data: any) => {
         console.log(data.token);
-        localStorage.setItem('firstname', this.user.firstname);
-        localStorage.setItem('lastname', this.user.lastname);
+        localStorage.setItem('first_name', this.user.first_name);
+        localStorage.setItem('last_name', this.user.last_name);
         localStorage.setItem('token', data.token);
         console.log(localStorage.getItem('token'));
         this.showSpinner = true;
@@ -42,7 +42,6 @@ export class UserLoginComponent {
       error => console.log(error));
     console.log(this.user);
     this.showSpinner = false;
-
   }
 
 
