@@ -17,6 +17,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegistrationSuccessfulComponent } from './loading-screens/registration-successful/registration-successful.component';
 import { HomeComponent } from './home/home.component';
 import { LoginSuccessfulComponent } from './loading-screens/login-successful/login-successful.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoginSuccessfulComponent } from './loading-screens/login-successful/log
     LoginPageComponent,
     RegistrationSuccessfulComponent,
     HomeComponent,
-    LoginSuccessfulComponent
+    LoginSuccessfulComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

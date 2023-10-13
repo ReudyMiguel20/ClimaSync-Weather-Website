@@ -7,13 +7,15 @@ import {BrowserModule} from "@angular/platform-browser";
 import {HomeComponent} from "./home/home.component";
 import {LoginPageComponent} from "./login-page/login-page.component";
 import {LoginSuccessfulComponent} from "./loading-screens/login-successful/login-successful.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {AuthGuard} from "../auth.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'registration-successful', component: RegistrationSuccessfulComponent},
   {path: 'login', component: LoginPageComponent},
-  {path: 'login-successful', component: LoginSuccessfulComponent}
-  // {path: 'redirecting', component: RegistrationSuccessfulComponent}
+  {path: 'login-successful', component: LoginSuccessfulComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
