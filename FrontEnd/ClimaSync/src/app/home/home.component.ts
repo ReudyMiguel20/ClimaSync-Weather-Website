@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +7,9 @@ import {Component} from '@angular/core';
 })
 export class HomeComponent {
 
+  constructor(private renderer: Renderer2,
+              private elementRef: ElementRef) {
+  }
 
   firstName = localStorage.getItem('first_name');
 
@@ -33,13 +36,19 @@ export class HomeComponent {
     },
   ]
 
-  constructor() {
-  }
-
   userLoggedIn(): boolean {
     const token = localStorage.getItem('token');
 
     return !!token;
+  }
+
+  scrollToRegister() {
+    const registerElement = this.elementRef.nativeElement.querySelector('#register');
+
+    if(registerElement) {
+      registerElement.scrollIntoView({behavior: 'smooth'});
+    }
+
   }
 
 

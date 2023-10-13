@@ -14,8 +14,9 @@ import { CardDescriptionComponent } from './card-description/card-description.co
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { LoginPageComponent } from './login-page/login-page.component';
-import { RegistrationSuccessfulComponent } from './registration-successful/registration-successful.component';
+import { RegistrationSuccessfulComponent } from './loading-screens/registration-successful/registration-successful.component';
 import { HomeComponent } from './home/home.component';
+import { LoginSuccessfulComponent } from './loading-screens/login-successful/login-successful.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HomeComponent } from './home/home.component';
     CardDescriptionComponent,
     LoginPageComponent,
     RegistrationSuccessfulComponent,
-    HomeComponent
+    HomeComponent,
+    LoginSuccessfulComponent
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,7 @@ export class RegistrationSuccessfulComponent {
   ngOnInit() {
     setTimeout(() => {
       this.router.navigate(['']);
-    }, 3000);
+    }, 1800);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,5 +15,13 @@ export class NavBarComponent {
   userLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     return !!token;
+  }
+
+  scrollToRegister() {
+    const registerElement = document.getElementById('register');
+
+    if (registerElement) {
+      registerElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

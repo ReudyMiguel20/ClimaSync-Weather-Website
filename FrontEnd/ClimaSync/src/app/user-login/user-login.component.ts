@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {User} from "../../interfaces";
 import {UserServiceService} from "../user-service.service";
 import {Router} from "@angular/router";
@@ -11,6 +11,10 @@ import {Router} from "@angular/router";
 
 export class UserLoginComponent {
 
+  constructor(private userService: UserServiceService,
+              private router: Router) {
+  }
+
   showSpinner = false;
 
   user: User = {
@@ -19,10 +23,6 @@ export class UserLoginComponent {
     email: '',
     password: ''
   };
-
-  constructor(private userService: UserServiceService,
-              private router: Router) {
-  }
 
   onSubmit(): void {
 
@@ -34,9 +34,8 @@ export class UserLoginComponent {
         console.log(localStorage.getItem('token'));
         this.showSpinner = true;
 
-
         setTimeout(() => {
-          this.router.navigate(['/redirecting']);
+          this.router.navigate(['/registration-successful']);
         }, 1500);
       },
       error => console.log(error));
