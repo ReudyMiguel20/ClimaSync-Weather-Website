@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
+
+  firstName = localStorage.getItem('firstname');
+
   images = [
     {
       imageSrc:
@@ -28,4 +32,15 @@ export class HomeComponent {
       imageAlt: 'weather4',
     },
   ]
+
+  constructor() {
+  }
+
+  userLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+
+    return !!token;
+  }
+
+
 }

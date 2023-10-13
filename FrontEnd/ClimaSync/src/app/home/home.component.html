@@ -1,3 +1,7 @@
+<div *ngIf="userLoggedIn()" class="welcome-message">
+  <h2>Welcome back, {{ firstName }}</h2>
+</div>
+
 <app-slideshow [images]="images"
                [autoSlide]="true">
 </app-slideshow>

@@ -28,6 +28,8 @@ export class UserLoginComponent {
 
     this.userService.createNewUser(this.user).subscribe((data: any) => {
         console.log(data.token);
+        localStorage.setItem('firstname', this.user.firstname);
+        localStorage.setItem('lastname', this.user.lastname);
         localStorage.setItem('token', data.token);
         console.log(localStorage.getItem('token'));
         this.showSpinner = true;
