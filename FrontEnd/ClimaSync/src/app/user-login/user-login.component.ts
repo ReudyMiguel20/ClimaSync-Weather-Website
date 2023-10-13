@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {User} from "../../interfaces";
 import {UserServiceService} from "../user-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-login',
@@ -10,6 +11,8 @@ import {UserServiceService} from "../user-service.service";
 
 export class UserLoginComponent {
 
+  showSpinner = false;
+
   user: User = {
     firstname: '',
     lastname: '',
@@ -17,16 +20,28 @@ export class UserLoginComponent {
     password: '',
   }
 
-  constructor(private userService: UserServiceService) { }
+  constructor(private userService: UserServiceService,
+              private router: Router) {
+  }
 
   onSubmit(): void {
+
     this.userService.createNewUser(this.user).subscribe((data: any) => {
-      console.log(data.token);
-      localStorage.setItem('token', data.token);
-      console.log(localStorage.getItem('token'));
-    },
+        console.log(data.token);
+        localStorage.setItem('token', data.token);
+        console.log(localStorage.getItem('token'));
+        this.showSpinner = true;
+
+
+        setTimeout(() => {
+          this.router.navigate(['/redirecting']);
+        }, 1500);
+      },
       error => console.log(error));
     console.log(this.user);
+    this.showSpinner = false;
+
   }
+
 
 }

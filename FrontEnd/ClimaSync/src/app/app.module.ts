@@ -13,6 +13,9 @@ import { FooterComponent } from './footer/footer.component';
 import { CardDescriptionComponent } from './card-description/card-description.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegistrationSuccessfulComponent } from './registration-successful/registration-successful.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     UserLoginComponent,
     AboutClimasyncComponent,
     FooterComponent,
-    CardDescriptionComponent
+    CardDescriptionComponent,
+    LoginPageComponent,
+    RegistrationSuccessfulComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

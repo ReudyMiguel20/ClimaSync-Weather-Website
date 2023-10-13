@@ -1,0 +1,14 @@
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 60vh; /* Set the container to cover the entire viewport height */
+}
+
+.spinner-border{
+  width: 5rem;
+  height: 5rem;
+  color: #6A00E4;
+}

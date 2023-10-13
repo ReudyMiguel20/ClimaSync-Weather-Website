@@ -7,27 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Welcome to ClimaSync';
-
-  images = [
-    {
-      imageSrc:
-        '/assets/slideshow-photos/img4.jpg',
-      imageAlt: 'weather1',
-    },
-    {
-      imageSrc:
-        '/assets/slideshow-photos/img2.jpeg',
-      imageAlt: 'weather2',
-    },
-    {
-      imageSrc:
-        '/assets/slideshow-photos/img3.jpeg',
-      imageAlt: 'weather3',
-    },
-    {
-      imageSrc:
-        '/assets/slideshow-photos/img1.jpeg',
-      imageAlt: 'weather4',
-    },
-  ]
 }

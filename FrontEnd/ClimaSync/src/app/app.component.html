@@ -1,14 +1,15 @@
-<app-nav-bar></app-nav-bar>
+<div class="wrapper">
 
-<app-slideshow [images]="images"
-               [autoSlide]="true"
-></app-slideshow>
+  <app-nav-bar></app-nav-bar>
+  <div class="content">
 
-<app-about-climasync></app-about-climasync>
+    <router-outlet></router-outlet>
 
-<app-card-description></app-card-description>
+  </div>
 
-<app-user-login></app-user-login>
+  <app-footer></app-footer>
 
-<app-footer></app-footer>
+</div>
+
+<!--<app-login-page></app-login-page>-->
 
