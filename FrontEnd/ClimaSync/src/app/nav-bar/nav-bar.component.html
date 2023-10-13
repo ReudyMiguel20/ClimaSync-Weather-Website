@@ -32,4 +32,8 @@
 
    </div>
 
+  <div *ngIf="userLoggedIn()" class="logout-button">
+    <button (click)="logout()" type="button" class="btn btn-danger">Logout</button>
+  </div>
+
 </nav>

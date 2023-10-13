@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
 
+  logout() {
+    localStorage.clear();
+    window.location.reload();
+  }
+
+  userLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
 }

@@ -50,3 +50,10 @@ h3 {
   color: white;
   transition: color 0.01ms;
 }
+
+.logout-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100px;
+}
