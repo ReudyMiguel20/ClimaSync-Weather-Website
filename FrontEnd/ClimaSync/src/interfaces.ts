@@ -9,3 +9,19 @@ export interface ExistingUser {
   email: string;
   password: string;
 }
+
+export interface CountryAndPlace {
+  place: string,
+  country: string
+}
+
+export interface WeatherCondition {
+  main: string,
+  description: string,
+  temp: number,
+  feels_like: number,
+  temp_min: number,
+  temp_max: number,
+  pressure: number,
+  humidity: number
+}

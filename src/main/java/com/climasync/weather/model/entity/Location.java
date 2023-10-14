@@ -1,6 +1,7 @@
 package com.climasync.weather.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,8 @@ public class Location {
     private String id;
     private String name;
     private String country;
+    @JsonProperty("country_code")
+    private String countryCode;
 //    @Indexed(unique = true)
     private double lat;
 //    @Indexed(unique = true)

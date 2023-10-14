@@ -86,6 +86,7 @@ public class LocationServiceImpl implements LocationService {
                 Location locationToReturn = Location.builder()
                         .name(name)
                         .country(country)
+                        .countryCode(countryConvertedToTwoLetter)
                         .lat(location.getLat())
                         .lon(location.getLon())
                         .build();

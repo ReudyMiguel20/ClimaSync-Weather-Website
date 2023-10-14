@@ -16,7 +16,7 @@ export class LoginSuccessfulComponent {
 
   ngOnInit() {
     setTimeout(() => {
-      this.router.navigate(['']);
+      this.router.navigate(['/dashboard']);
     }, 1800);
   }
 }
