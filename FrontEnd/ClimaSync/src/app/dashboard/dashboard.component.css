@@ -180,3 +180,19 @@
 .weathercondition h4 {
   padding-top: 13px;
 }
+
+.results {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.result-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

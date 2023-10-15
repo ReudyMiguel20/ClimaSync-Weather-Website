@@ -8,56 +8,6 @@
 
   <div class="coordinates-and-weatherforecast-container">
 
-    <div class="coordinates-container">
-      <div class="form-title">
-        <h3 class="get">Get Coordinates</h3>
-      </div>
-
-      <form class="coordinates-form">
-
-        <div class="search-input">
-          <input type="text" name="country" value="" placeholder="Country">
-          <input type="text" name="place" value="" placeholder="Place">
-        </div>
-
-        <div class="coordinates-form-button form-button">
-          <button type="submit">Submit</button>
-        </div>
-
-        <div class="result-coordinates result">
-
-          <div class="test-box">
-            <div class="flag">
-              <img [src]="flagImage">
-            </div>
-
-            <div class="testborder">
-
-            </div>
-
-            <div class="country-place">
-              <h5>Country</h5>
-              <h5>Place</h5>
-            </div>
-          </div>
-
-          <div class="coordinates-results">
-            <p>weather: 00</p>
-            <p>weather: 00</p>
-            <p>weather: 00</p>
-            <p>weather: 00</p>
-            <p>weather: 00</p>
-            <p>weather: 00</p>
-            <p>weather: 00</p>
-          </div>
-
-
-        </div>
-
-      </form>
-    </div>
-
-
     <div class="weatherforecast-container">
       <div class="form-title">
         <h3>Get Weather Condition</h3>
@@ -80,48 +30,86 @@
           </div>
         </div>
 
-        <div *ngIf="searchSuccessful" class="result-weatherforecast result">
+        <div class="result-title">
+          <h4 *ngIf="searchSuccessful">Results:</h4>
+        </div>
+
+        <div *ngIf="searchSuccessful" class="results">
+<!--          <div class="result-coordinates result">-->
+
+<!--            <div class="test-box">-->
+<!--              <div class="flag">-->
+<!--                <img [src]="flagImage">-->
+<!--              </div>-->
+
+<!--              <div class="testborder">-->
+
+<!--              </div>-->
+
+<!--              <div class="country-place">-->
+<!--                <h4>Coordinates for:</h4>-->
+<!--                <h5>{{ countryAndPlace.country.toLocaleUpperCase() }}</h5>-->
+<!--                <h5>{{ countryAndPlace.place.toLocaleUpperCase() }}</h5>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="coordinates-results">-->
+<!--              <p>weather: 00</p>-->
+<!--              <p>weather: 00</p>-->
+<!--              <p>weather: 00</p>-->
+<!--              <p>weather: 00</p>-->
+<!--              <p>weather: 00</p>-->
+<!--              <p>weather: 00</p>-->
+<!--              <p>weather: 00</p>-->
+<!--            </div>-->
 
 
-          <div class="test-box">
-            <div class="flag">
-              <img [src]="flagImage">
+<!--          </div>-->
+
+          <div  class="result-weatherforecast result">
+
+            <div class="test-box">
+              <div class="flag">
+                <img [src]="flagImage">
+              </div>
+
+              <div class="testborder">
+
+              </div>
+
+              <div class="country-place">
+                <h4>Current weather condition for:</h4>
+
+                <h5>{{ countryAndPlace.country.toLocaleUpperCase() }}</h5>
+                <h5>{{ countryAndPlace.place.toLocaleUpperCase() }}</h5>
+              </div>
             </div>
 
-            <div class="testborder">
 
-            </div>
+            <div class="weatherforecast-results">
 
-            <div class="country-place">
-              <h4>Current weather condition for:</h4>
+              <div class="weathercondition">
+                <h4>Main</h4>
+                <h4>{{ weatherCondition.main }}</h4>
+                <h4>Description</h4>
+                <h4>{{ weatherCondition.description }}</h4>
+              </div>
 
-              <h5>{{ countryAndPlace.country.toLocaleUpperCase() }}</h5>
-              <h5>{{ countryAndPlace.place.toLocaleUpperCase() }}</h5>
-            </div>
-          </div>
+              <div class="temperatures-details">
+                <h5>Temp: {{ weatherCondition.temp }}</h5>
+                <h5>Feels Like: {{ weatherCondition.feels_like }}</h5>
+                <h5>Min Temp: {{ weatherCondition.temp_min }}</h5>
+                <h5>Max Temp: {{ weatherCondition.temp_max }}</h5>
+                <h5>Humidity: {{ weatherCondition.humidity }}</h5>
+                <h5>Pressure: {{ weatherCondition.pressure }}</h5>
+              </div>
 
-
-          <div class="weatherforecast-results">
-
-            <div class="weathercondition">
-              <h4>Main</h4>
-              <h4>{{ weatherCondition.main }}</h4>
-              <h4>Description</h4>
-              <h4>{{ weatherCondition.description }}</h4>
-            </div>
-
-            <div class="temperatures-details">
-              <h5>Temp: {{ weatherCondition.temp }}</h5>
-              <h5>Feels Like: {{ weatherCondition.feels_like }}</h5>
-              <h5>Min Temp: {{ weatherCondition.temp_min }}</h5>
-              <h5>Max Temp: {{ weatherCondition.temp_max }}</h5>
-              <h5>Humidity: {{ weatherCondition.humidity }}</h5>
-              <h5>Pressure: {{ weatherCondition.pressure }}</h5>
             </div>
 
           </div>
 
         </div>
+
 
 
       </form>
