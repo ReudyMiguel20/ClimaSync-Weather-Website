@@ -1,13 +1,22 @@
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 
 <div *ngIf="images && images.length > 0" class="slideshow-container">
-  <img *ngFor="let image of images, let i = index"
+  <div *ngFor="let image of images, let i = index" class="test-carousel">
+
+  <img
        [src]="image.imageSrc" [alt]="image.imageAlt"
        [ngClass]="{'image-active': selectedIndex === i}"
        class="fade"
-  >
+       >
+<!--  <div id='text-carousel' style='position:absolute; top:0; right:0;'>-->
+<!--    <h3 [ngClass]="{'image-active': selectedIndex === i}" >{{ image.imageCaption }}</h3>-->
+<!--  </div>-->
+
+  </div>
+
+
 
   <div *ngIf="indicators" class="slideshow-dot-container">
     <span *ngFor="let dot of images, let i = index"

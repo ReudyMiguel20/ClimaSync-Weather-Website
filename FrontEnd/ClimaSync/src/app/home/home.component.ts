@@ -18,21 +18,25 @@ export class HomeComponent {
       imageSrc:
         '/assets/slideshow-photos/img4.jpg',
       imageAlt: 'weather1',
+      imageCaption: 'tst'
     },
     {
       imageSrc:
         '/assets/slideshow-photos/img2.jpeg',
       imageAlt: 'weather2',
+      imageCaption: 'tsteeee'
     },
     {
       imageSrc:
         '/assets/slideshow-photos/img3.jpeg',
       imageAlt: 'weather3',
+      imageCaption: 'tstqweqweqwewq'
     },
     {
       imageSrc:
         '/assets/slideshow-photos/img1.jpeg',
       imageAlt: 'weather4',
+      imageCaption: 'tsaaaaaaat'
     },
   ]
 

@@ -3,6 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 interface slideshowImages {
   imageSrc: string;
   imageAlt: string;
+  imageCaption: string;
 }
 
 @Component({

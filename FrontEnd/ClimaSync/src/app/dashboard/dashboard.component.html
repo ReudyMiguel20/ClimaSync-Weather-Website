@@ -1,101 +1,114 @@
-<div class="dashboard-container">
-
-  <div class="title-img-container">
-    <h1>Dashboard</h1>
-    <img src="/assets/slideshow-photos/weather.jpg">
+<div class="sidebar-and-content">
+  <div class="sidebar-container">
+    <app-sidebar-options></app-sidebar-options>
   </div>
 
+<div class="dashboard-container">
 
-  <div class="coordinates-and-weatherforecast-container">
 
-    <div class="weatherforecast-container">
-      <div class="form-title">
-        <h3>Get Weather Condition</h3>
-      </div>
 
-      <form class="weatherforecast-form">
+  <div class="weathercondition-container">
 
-        <div class="search-input">
-          <input type="text" name="country" value="" placeholder="Country" [(ngModel)]="countryAndPlace.country">
-          <input type="text" name="place" value="" placeholder="Place" [(ngModel)]="countryAndPlace.place">
+    <div class="title-img-container">
+      <h1>Dashboard</h1>
+      <img src="/assets/slideshow-photos/weather.jpg">
+    </div>
+
+
+    <div class="coordinates-and-weatherforecast-container">
+
+      <div class="weatherforecast-container">
+        <div class="form-title">
+          <h3>Get Weather Condition</h3>
         </div>
 
-        <div class="weatherforecast-form-button form-button">
-          <button (click)="getCurrentWeather()" type="submit">Submit</button>
-        </div>
+        <form class="weatherforecast-form">
 
-      </form>
-
-      <div class="weatherforecast-recent-results">
-
-        <div *ngIf="showSpinner" class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-
-        <div class="result-title">
-          <h4 *ngIf="searchSuccessful">Results:</h4>
-        </div>
-
-        <div *ngIf="searchSuccessful" class="results">
-
-          <div class="result-weatherforecast result">
-
-            <div class="test-box">
-              <div class="flag">
-                <img [src]="flagImage">
-              </div>
-
-              <div class="testborder">
-
-              </div>
-
-              <div class="country-place">
-                <h4>Current weather condition for:</h4>
-
-                <h5>{{ countryAndPlace.country.toLocaleUpperCase() }}</h5>
-                <h5>{{ countryAndPlace.place.toLocaleUpperCase() }}</h5>
-              </div>
-            </div>
-
-
-            <div class="weatherforecast-results">
-
-              <div class="weathercondition">
-                <h4>Main</h4>
-                <h4>{{ weatherCondition.main }}</h4>
-                <h4>Description</h4>
-                <h4>{{ weatherCondition.description }}</h4>
-              </div>
-
-              <div class="temperatures-details">
-                <h5>Temp: {{ weatherCondition.temp }}</h5>
-                <h5>Feels Like: {{ weatherCondition.feels_like }}</h5>
-                <h5>Min Temp: {{ weatherCondition.temp_min }}</h5>
-                <h5>Max Temp: {{ weatherCondition.temp_max }}</h5>
-                <h5>Humidity: {{ weatherCondition.humidity }}</h5>
-                <h5>Pressure: {{ weatherCondition.pressure }}</h5>
-              </div>
-
-            </div>
-
+          <div class="search-input">
+            <input type="text" name="country" value="" placeholder="Country" [(ngModel)]="countryAndPlace.country">
+            <input type="text" name="place" value="" placeholder="Place" [(ngModel)]="countryAndPlace.place">
           </div>
 
+          <div class="weatherforecast-form-button form-button">
+            <button (click)="getCurrentWeather()" type="submit">Submit</button>
+          </div>
+
+        </form>
+
+
+        <div class="weatherforecast-recent-results">
+
+          <div *ngIf="showSpinner" class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+
+          <div class="result-title">
+            <h4 *ngIf="searchSuccessful">Results:</h4>
+          </div>
+
+          <div *ngIf="searchSuccessful" class="results">
+
+            <div class="result-weatherforecast result">
+
+              <div class="test-box">
+                <div class="flag">
+                  <img [src]="flagImage">
+                </div>
+
+                <div class="testborder">
+
+                </div>
+
+                <div class="country-place">
+                  <h4>Current weather condition for:</h4>
+
+                  <h5>{{ countryAndPlace.country.toLocaleUpperCase() }}</h5>
+                  <h5>{{ countryAndPlace.place.toLocaleUpperCase() }}</h5>
+                </div>
+              </div>
+
+
+              <div class="weatherforecast-results">
+
+                <div class="weathercondition">
+                  <h4>Main</h4>
+                  <h4>{{ weatherCondition.main }}</h4>
+                  <h4>Description</h4>
+                  <h4>{{ weatherCondition.description }}</h4>
+                </div>
+
+                <div class="temperatures-details">
+                  <h5>Temp: {{ weatherCondition.temp }}</h5>
+                  <h5>Feels Like: {{ weatherCondition.feels_like }}</h5>
+                  <h5>Min Temp: {{ weatherCondition.temp_min }}</h5>
+                  <h5>Max Temp: {{ weatherCondition.temp_max }}</h5>
+                  <h5>Humidity: {{ weatherCondition.humidity }}</h5>
+                  <h5>Pressure: {{ weatherCondition.pressure }}</h5>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
         </div>
-
-
       </div>
+
+    </div>
+
+    <div class="forecast-history-container">
+      <app-weathercondition-history
+        [userCurrentWeatherHistory]="userCurrentWeatherHistory"
+      ></app-weathercondition-history>
     </div>
 
   </div>
 
-  <div class="forecast-history-container">
-    <app-weathercondition-history
-      [userCurrentWeatherHistory]="userCurrentWeatherHistory"
-    ></app-weathercondition-history>
-  </div>
 
 </div>
 
-
+</div>

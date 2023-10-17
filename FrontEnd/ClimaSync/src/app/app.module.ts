@@ -20,6 +20,7 @@ import { LoginSuccessfulComponent } from './loading-screens/login-successful/log
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WeatherConditionHistoryComponent } from './dashboard/weathercondition-history/weathercondition-history/weather-condition-history.component';
 import { RecentCurrentweatherComponent } from './dashboard/recent-currentweather/recent-currentweather.component';
+import { SidebarOptionsComponent } from './dashboard/sidebar-options/sidebar-options.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RecentCurrentweatherComponent } from './dashboard/recent-currentweather
     LoginSuccessfulComponent,
     DashboardComponent,
     WeatherConditionHistoryComponent,
-    RecentCurrentweatherComponent
+    RecentCurrentweatherComponent,
+    SidebarOptionsComponent
   ],
   imports: [
     BrowserModule,

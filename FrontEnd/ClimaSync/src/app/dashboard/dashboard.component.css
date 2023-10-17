@@ -1,11 +1,36 @@
-.dashboard-container {
+.sidebar-and-content {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 25vh;
+  flex-direction: row;
 }
 
-.dashboard-container h1 {
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+margin-left: 15%;
+  padding: 25px 25px 200px 50px;
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 17%;
+  background-color: #6A00E4;
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.weathercondition-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20%;
+}
+
+.weathercondition-container h1 {
   text-align: center;
   font-size: 24pt;
   margin-bottom: 50px;

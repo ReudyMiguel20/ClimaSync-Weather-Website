@@ -1,0 +1,21 @@
+.sidebar-container h5 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16pt;
+}
+
+.sidebar-links h5 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 18pt;
+  padding-left: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.sidebar-links a {
+text-decoration: none;
+}
+
+
