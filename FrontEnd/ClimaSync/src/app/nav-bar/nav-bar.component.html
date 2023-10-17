@@ -14,12 +14,16 @@
            <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
          </li>
 
-         <li class="nav-item">
+         <li *ngIf="!userLoggedIn()" class="nav-item">
            <a class="nav-link" (click)="scrollToRegister()">Register</a>
          </li>
 
-         <li class="nav-item">
-           <a class="nav-link" [routerLink]="['/login']">Sign Up</a>
+         <li *ngIf="!userLoggedIn()" class="nav-item">
+           <a  class="nav-link" [routerLink]="['/login']">Sign Up</a>
+         </li>
+
+         <li *ngIf="userLoggedIn()" class="nav-item">
+           <a  class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
          </li>
 
          <li class="nav-item-last">
@@ -36,10 +40,12 @@
        </form>
      </div>
 
+     <div *ngIf="userLoggedIn()" class="logout-button">
+       <button (click)="logout()" type="button" class="btn btn-danger">Logout</button>
+     </div>
+
    </div>
 
-  <div *ngIf="userLoggedIn()" class="logout-button">
-    <button (click)="logout()" type="button" class="btn btn-danger">Logout</button>
-  </div>
+
 
 </nav>

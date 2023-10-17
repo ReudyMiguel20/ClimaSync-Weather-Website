@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-left: 45px;
-  padding-right: 45px;
+  padding-left: 300px;
+  padding-right: 150px;
 }
 
 .cookies-advice {
@@ -12,6 +12,13 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  padding-right: 25px;
+}
+
+.cookies-advice p {
+  font-size: 100pt;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 
