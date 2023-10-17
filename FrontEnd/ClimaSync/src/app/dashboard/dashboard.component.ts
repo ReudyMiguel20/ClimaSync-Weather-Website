@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { WeatherService } from "../weather.service";
-import {CountryAndPlace, WeatherCondition} from "../../interfaces";
+import {Component} from '@angular/core';
+import {WeatherService} from "../weather.service";
+import {CountryAndPlace, WeatherCondition, CurrentWeather} from "../../interfaces";
 import {count} from "rxjs";
-
+import {UserServiceService} from "../user-service.service";
+import {WeatherConditionHistoryComponent} from "./weathercondition-history/weathercondition-history/weather-condition-history.component";
 
 
 @Component({
@@ -12,11 +13,20 @@ import {count} from "rxjs";
 })
 export class DashboardComponent {
 
-  constructor(private weatherService: WeatherService) {
+  constructor(private weatherService: WeatherService,
+              private userService: UserServiceService) {
   }
+
+  ngOnInit(): void {
+    this.getUserCurrentWeatherHistory();
+  }
+
+  // Variables
 
   showSpinner = false;
   searchSuccessful = false;
+
+  flagImage: string = '';
 
   countryAndPlace: CountryAndPlace = {
     place: '',
@@ -34,8 +44,13 @@ export class DashboardComponent {
     humidity: 0
   }
 
-  flagImage: string = '';
+  userCurrentWeatherHistory: CurrentWeather[] = [];
 
+  userCurrentWeatherHistoryArray: CurrentWeather[] = []
+
+  // Functions
+
+  // Populates the weatherCondition object with data from the API call
   grabWeatherCondition(data: any) {
     this.weatherCondition.main = data.weather_condition.main;
     this.weatherCondition.description = data.weather_condition.description;
@@ -47,6 +62,16 @@ export class DashboardComponent {
     this.weatherCondition.humidity = data.humidity;
   }
 
+  // Calls the API and populates the weatherCondition array with data from the API call
+  getUserCurrentWeatherHistory(): void {
+    this.userService.getUserCurrentWeatherHistory().subscribe(data => {
+        this.userCurrentWeatherHistory = data;
+        console.log(this.userCurrentWeatherHistory);
+      },
+      error => console.log(error));
+  }
+
+
   getCurrentWeather(): void {
 
     this.weatherService.getCurrentWeather(this.countryAndPlace).subscribe((data: any) => {
@@ -55,19 +80,19 @@ export class DashboardComponent {
         setTimeout(() => {
           this.grabWeatherCondition(data);
           this.flagImage = `https://flagsapi.com/${data.location.country_code}/shiny/64.png`;
-          console.log(data)
           this.searchSuccessful = true;
           this.showSpinner = false;
         }, 1500);
 
+        this.getUserCurrentWeatherHistory();
 
 
-
-    },
+      },
       error => console.log(error));
-      this.searchSuccessful = false;
+    this.searchSuccessful = false;
+
   }
 
-
   protected readonly count = count;
+
 }

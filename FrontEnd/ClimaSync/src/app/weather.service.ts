@@ -8,6 +8,8 @@ import {CountryAndPlace} from "../interfaces";
 })
 export class WeatherService {
 
+  constructor(private httpClient: HttpClient) { }
+
   readonly baseUrl = "http://localhost:8080/api/weather";
 
   userToken: string | null = localStorage.getItem('token'.toString());
@@ -16,7 +18,6 @@ export class WeatherService {
     'Authorization': `Bearer ${this.userToken}`
   })
 
-  constructor(private httpClient: HttpClient) { }
 
   getCurrentWeather(countryAndPlace: CountryAndPlace): Observable<Object> {
     return this.httpClient.get(

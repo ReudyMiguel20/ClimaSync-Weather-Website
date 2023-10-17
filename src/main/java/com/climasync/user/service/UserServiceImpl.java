@@ -1,6 +1,7 @@
 package com.climasync.user.service;
 
 import com.climasync.common.dto.StatusMessage;
+import com.climasync.common.jwt.JwtService;
 import com.climasync.user.exception.UserAlreadyExists;
 import com.climasync.user.exception.UserNotFound;
 import com.climasync.user.model.dto.RegisterRequest;
@@ -23,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Override
     public void saveUser(User user) {
@@ -120,6 +122,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteAll() {
         userRepository.deleteAll();
+    }
+
+//    @Override
+//    public User retrieveUserByJwtToken(String token) {
+//        return retrieveUserByEmail(jwtService.extractUsername(token));
+//    }
+
+    /**
+     * Retrieves the user's recent weather history from the database and returns it to the controller.
+     * The user's email is extracted from the jwt token and used to retrieve the user from the database.
+     *
+     * @param token - the jwt token to extract the user's email from.
+     * @return - the user's recent weather history.
+     */
+    @Override
+    public List<CurrentWeather> getUserRecentHistory(String token) {
+        User user = retrieveUserByEmail(jwtService.extractUsername(token));
+
+        return user.getCurrentWeatherHistory();
     }
 
 }

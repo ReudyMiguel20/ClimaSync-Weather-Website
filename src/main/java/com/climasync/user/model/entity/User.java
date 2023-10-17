@@ -56,7 +56,6 @@ public class User implements UserDetails {
 
     private Role role;
 
-
     private List<CurrentWeather> currentWeatherHistory = new ArrayList<>();
 
     @Override

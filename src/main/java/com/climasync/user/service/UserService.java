@@ -25,4 +25,6 @@ public interface UserService {
     boolean doUserAlreadyExists(User user);
 
     void deleteAll();
+
+    List<CurrentWeather> getUserRecentHistory(String token);
 }

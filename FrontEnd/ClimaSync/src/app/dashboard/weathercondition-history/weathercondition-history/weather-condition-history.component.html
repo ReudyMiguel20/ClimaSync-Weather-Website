@@ -1,0 +1,29 @@
+<div class="weathercondition-history">
+
+  <div class="weathercondition-history-title">
+    <h3>Forecast History</h3>
+  </div>
+
+  <div class="weathercondition-history-results">
+
+    <div class="weathercondition-history-result-container" *ngFor="let weather of userCurrentWeatherHistory">
+      <div class="forecast-history-result">
+
+        <div class="weathercondition-history-result-flag">
+          <img src="https://flagsapi.com/{{ weather.location.country_code }}/shiny/64.png">
+        </div>
+
+        <div class="weathercondition-history-result-country-place">
+          <h5>{{ weather.location.country }}</h5>
+          <h5>{{ weather.location.name }}</h5>
+        </div>
+
+        <div class="weathercondition-history-result-details">
+          <h6>Main: {{ weather.weather_condition.main }}</h6>
+          <h6>Temperature: {{ weather.temp }}</h6>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

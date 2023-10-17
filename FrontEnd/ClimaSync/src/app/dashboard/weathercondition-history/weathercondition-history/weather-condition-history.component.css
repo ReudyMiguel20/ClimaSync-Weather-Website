@@ -1,0 +1,36 @@
+.weathercondition-history-result-container {
+  box-sizing: content-box;
+  border: dodgerblue 7px solid;
+  border-left: #6A00E4 11px solid;
+  padding-left: 75px;
+  padding-bottom: 15px;
+  padding-right: 75px;
+  margin-bottom: 4%;
+}
+
+.forecast-history-result {
+  display: flex;
+  flex-direction: row;
+}
+
+.weathercondition-history-result-flag {
+  padding-right: 45px;
+}
+
+.weathercondition-history-result-country-place {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.weathercondition-history-result-details {
+  display: flex;
+  flex-direction: column;
+  padding-left: 45px;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+}

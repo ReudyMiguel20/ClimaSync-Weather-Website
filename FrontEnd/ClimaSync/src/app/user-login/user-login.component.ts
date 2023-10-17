@@ -35,8 +35,8 @@ export class UserLoginComponent {
         this.showSpinner = true;
 
         setTimeout(() => {
-          this.router.navigate(['/registration-successful']);
-        }, 1500);
+          this.router.navigate(['/registration-successful'])
+        }, 3000);
       },
       error => console.log(error));
     console.log(this.user);

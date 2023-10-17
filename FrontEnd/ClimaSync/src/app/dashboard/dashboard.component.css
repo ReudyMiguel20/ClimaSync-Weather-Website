@@ -55,7 +55,7 @@
   align-items: center;
 }
 
-.forecast-history {
+.weathercondition-history {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -195,4 +195,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.forecast-history-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
 }

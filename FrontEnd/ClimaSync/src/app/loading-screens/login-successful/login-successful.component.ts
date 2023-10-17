@@ -16,7 +16,9 @@ export class LoginSuccessfulComponent {
 
   ngOnInit() {
     setTimeout(() => {
-      this.router.navigate(['/dashboard']);
-    }, 1800);
+      this.router.navigate(['/dashboard']).then(() => {
+        window.location.reload();
+      });
+    }, 1200);
   }
 }

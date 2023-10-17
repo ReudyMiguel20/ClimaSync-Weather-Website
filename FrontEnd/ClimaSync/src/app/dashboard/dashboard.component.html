@@ -24,6 +24,10 @@
           <button (click)="getCurrentWeather()" type="submit">Submit</button>
         </div>
 
+      </form>
+
+      <div class="weatherforecast-recent-results">
+
         <div *ngIf="showSpinner" class="d-flex justify-content-center">
           <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
@@ -35,38 +39,8 @@
         </div>
 
         <div *ngIf="searchSuccessful" class="results">
-<!--          <div class="result-coordinates result">-->
 
-<!--            <div class="test-box">-->
-<!--              <div class="flag">-->
-<!--                <img [src]="flagImage">-->
-<!--              </div>-->
-
-<!--              <div class="testborder">-->
-
-<!--              </div>-->
-
-<!--              <div class="country-place">-->
-<!--                <h4>Coordinates for:</h4>-->
-<!--                <h5>{{ countryAndPlace.country.toLocaleUpperCase() }}</h5>-->
-<!--                <h5>{{ countryAndPlace.place.toLocaleUpperCase() }}</h5>-->
-<!--              </div>-->
-<!--            </div>-->
-
-<!--            <div class="coordinates-results">-->
-<!--              <p>weather: 00</p>-->
-<!--              <p>weather: 00</p>-->
-<!--              <p>weather: 00</p>-->
-<!--              <p>weather: 00</p>-->
-<!--              <p>weather: 00</p>-->
-<!--              <p>weather: 00</p>-->
-<!--              <p>weather: 00</p>-->
-<!--            </div>-->
-
-
-<!--          </div>-->
-
-          <div  class="result-weatherforecast result">
+          <div class="result-weatherforecast result">
 
             <div class="test-box">
               <div class="flag">
@@ -111,17 +85,17 @@
         </div>
 
 
-
-      </form>
+      </div>
     </div>
+
   </div>
 
-  <div class="forecast-history">
-    <p>forecast history #1</p>
-    <p>forecast history #2</p>
-    <p>forecast history #3</p>
-    <p>forecast history #4</p>
-    <p>forecast history #5</p>
+  <div class="forecast-history-container">
+    <app-weathercondition-history
+      [userCurrentWeatherHistory]="userCurrentWeatherHistory"
+    ></app-weathercondition-history>
   </div>
 
 </div>
+
+

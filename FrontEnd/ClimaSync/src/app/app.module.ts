@@ -18,6 +18,8 @@ import { RegistrationSuccessfulComponent } from './loading-screens/registration-
 import { HomeComponent } from './home/home.component';
 import { LoginSuccessfulComponent } from './loading-screens/login-successful/login-successful.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WeatherConditionHistoryComponent } from './dashboard/weathercondition-history/weathercondition-history/weather-condition-history.component';
+import { RecentCurrentweatherComponent } from './dashboard/recent-currentweather/recent-currentweather.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegistrationSuccessfulComponent,
     HomeComponent,
     LoginSuccessfulComponent,
-    DashboardComponent
+    DashboardComponent,
+    WeatherConditionHistoryComponent,
+    RecentCurrentweatherComponent
   ],
   imports: [
     BrowserModule,
