@@ -44,6 +44,12 @@ public class UserServiceImplTest {
         userService.deleteAll();
     }
 
+//    @Test
+//    void testForDeployment() {
+//        String test = "Test";
+//        Assertions.assertThat(test).isEqualTo("Tast");
+//    }
+
     @Test
     void firstUserConsistencyTest() {
 
