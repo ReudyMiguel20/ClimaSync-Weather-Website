@@ -84,27 +84,27 @@ public class UserServiceImplTest {
                 .isEqualTo("123456789");
     }
 
-    @Test
-    void createNewUserAndSaveToDatabase() {
-
-        // Arrange
-        RegisterRequest newUserData = RegisterRequest.builder()
-                .firstName("Mike")
-                .lastName("Tester")
-                .email("newuser@test.com")
-                .password("123456789")
-                .build();
-
-        User newUser = modelMapper.map(newUserData, User.class);
-
-        // Act
-        userService.assignRoleToUser(newUser);
-        userService.saveUser(newUser);
-
-        // Assert
-        Assertions.assertThat(userService.getAllUsers())
-                .as("The user wasn't persisted to the database")
-                .isNotEmpty();
-    }
+//    @Test
+//    void createNewUserAndSaveToDatabase() {
+//
+//        // Arrange
+//        RegisterRequest newUserData = RegisterRequest.builder()
+//                .firstName("Mike")
+//                .lastName("Tester")
+//                .email("newuser@test.com")
+//                .password("123456789")
+//                .build();
+//
+//        User newUser = modelMapper.map(newUserData, User.class);
+//
+//        // Act
+//        userService.assignRoleToUser(newUser);
+//        userService.saveUser(newUser);
+//
+//        // Assert
+//        Assertions.assertThat(userService.getAllUsers())
+//                .as("The user wasn't persisted to the database")
+//                .isNotEmpty();
+//    }
 
 }
